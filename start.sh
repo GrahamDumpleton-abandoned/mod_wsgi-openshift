@@ -116,4 +116,9 @@ SERVER_ARGS="$SERVER_ARGS --modules-directory $MODULES_DIRECTORY"
 SERVER_ARGS="$SERVER_ARGS --python-eggs $PYTHON_EGG_CACHE"
 SERVER_ARGS="$SERVER_ARGS --log-to-terminal --host $HOST --port $PORT"
 
+if test x"$NEW_RELIC_LICENSE_KEY" != x"" -o \
+            x"$NEW_RELIC_CONFIG_FILE" != x""; then
+    SERVER_ARGS="$SERVER_ARGS --with-newrelic"
+fi
+
 exec mod_wsgi-express start-server $SERVER_ARGS "$@"
