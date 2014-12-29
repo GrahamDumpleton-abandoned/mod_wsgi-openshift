@@ -5,9 +5,8 @@ RUN curl -o epel-release-6-8.noarch.rpm \
 
 RUN rpm -Uvh epel-release-6*.rpm
 
-RUN yum -y install libssl1.0.0 curl gcc file \
-        libc6-dev libssl-dev xz-utils zlib1g-dev libsqlite3-dev \
-        pcre pcre-devel python-pip python-virtualenv tar
+RUN yum -y install curl gcc file expat-devel pcre pcre-devel python-pip \
+        python-virtualenv tar
 
 WORKDIR /app
 
