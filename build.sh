@@ -62,15 +62,6 @@ cp $WHISKEY_HOMEDIR/.whiskey/apache/bin/ab $WHISKEY_BINDIR/ab
 cp .whiskey/scripts/mod_wsgi-openshift-start $WHISKEY_BINDIR
 cp .whiskey/scripts/mod_wsgi-openshift-shell $WHISKEY_BINDIR
 
-# Now run 'pip' to install any required Python packages based on the
-# contents of the 'requirements.txt' file.
-
-if [ -f requirements.txt ]; then
-    echo " -----> Installing dependencies with pip"
-    pip install -r requirements.txt -U --allow-all-external \
-        --exists-action=w --src=.whiskey/tmp
-fi
-
 # Build and install mod_wsgi.
 
 pip install -U \
