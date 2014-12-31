@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import os
 import re
 import sys
@@ -76,4 +78,4 @@ for name in _CFLAGS_NAMES:
 CONFIG['CFLAGS'] = ' '.join(_CFLAGS_VALUES)
 
 if sys.argv[1] == '-q':
-    print get_vars(sys.argv[2])
+    print(get_vars(sys.argv[2]))
