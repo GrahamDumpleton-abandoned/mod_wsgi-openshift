@@ -93,8 +93,26 @@ fi
 # after anything has been installed in it. This is because each gear
 # will actually take a copy of everything and run under a different
 # directory path.
+#
+# In doing this we need to detect whether it is old style Python virtual
+# environment or pyvenv as each need to be dealt with differently.
 
-virtualenv --relocatable $VIRTUAL_ENV
+function pyvenv-relocatable {
+  pushd "$1" > /dev/null
+
+  vdir=$(cd "$1" && pwd)
+  for zf in $(grep -l -r "#\!$vdir/venv/bin/" . ); do
+    sed --follow-symlinks -i "s;#\!$vdir/venv/bin/;#\!/usr/bin/env ;" "$zf"
+  done
+
+  popd > /dev/null
+}
+
+if test -f $VIRTUAL_ENV/pyvenv.cfg; then
+    pyvenv-relocatable $VIRTUAL_ENV
+else
+    virtualenv --relocatable $VIRTUAL_ENV
+fi
 
 # Clean up any temporary files, including the results of checking out
 # any source code repositories when doing a 'pip install' from a VCS.
