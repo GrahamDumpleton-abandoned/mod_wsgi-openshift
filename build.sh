@@ -64,8 +64,7 @@ cp .whiskey/scripts/mod_wsgi-openshift-shell $WHISKEY_BINDIR
 
 # Build and install mod_wsgi.
 
-pip install -U \
-    https://github.com/GrahamDumpleton/mod_wsgi/archive/develop.zip
+pip install -U mod_wsgi
 
 # Build and install mod_wsgi jumpstart package for OpenShift.
 
